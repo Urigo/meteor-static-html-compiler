@@ -1,21 +1,25 @@
 import {
-  BaseCompiler,
+  BaseHtmlCompiler,
+  IBaseHtmlCompiler,
 } from './base';
 
-import $ from 'cheerio';
+import * as $ from 'cheerio';
 
-export class MainHtmlCompiler extends BaseCompiler {
+export interface CompileResult {
+  head: string;
+  body: string;
+}
+
+export class MainHtmlCompiler extends BaseHtmlCompiler implements IBaseHtmlCompiler {
   constructor() {
-    super('main-html-compiler');
+    super('main-static-html-compiler');
   }
 
-  public compileResultSize(result) {
+  public compileResultSize(result): number {
     return result.head.length + result.body.length;
   }
 
-  public compileOneFile(file) {
-    console.log('Compiling main app HTML file: ' + file.getPathInPackage());
-
+  public compileOneFile(file): CompileResult {
     const $contents = $(file.getContentsAsString());
     const $head = $contents.closest('head');
     const $body = $contents.closest('body');
@@ -26,7 +30,7 @@ export class MainHtmlCompiler extends BaseCompiler {
     };
   }
 
-  public addCompileResult(file, result) {
+  public addCompileResult(file, result: CompileResult) {
     try {
       file.addHtml({
         data: result.head,
@@ -37,6 +41,8 @@ export class MainHtmlCompiler extends BaseCompiler {
         data: result.body,
         section: 'body',
       });
-    } catch (e) {}
+    } catch (e) {
+      //
+    }
   }
 };

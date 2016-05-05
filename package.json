@@ -1,14 +1,20 @@
 {
-  "name": "meteor-templating",
-  "version": "0.0.1",
+  "name": "meteor-static-html-compiler",
+  "version": "1.0.0",
+  "private": true,
   "description": "",
-  "main": "index.js",
+  "main": "build/src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clear": "rimraf build",
+    "compile": "tsc",
+    "lint": "tslint -e src/*.ts",
+    "watch": "tsc -w",
+    "prepublish": "npm run compile"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/jellyjs/meteor-templating.git"
+    "url": "git+ssh://git@github.com/jellyjs/meteor-static-html-compiler.git"
   },
   "keywords": [
     "meteor"
@@ -16,15 +22,14 @@
   "author": "Kamil Kisiela <kamil.kisiela@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jellyjs/meteor-templating/issues"
+    "url": "https://github.com/jellyjs/meteor-static-html-compiler/issues"
   },
-  "homepage": "https://github.com/jellyjs/meteor-templating#readme",
+  "homepage": "https://github.com/jellyjs/meteor-static-html-compiler#readme",
   "devDependencies": {
+    "rimraf": "^2.5.2",
     "tsc": "^1.20150623.0",
     "tslint": "^3.9.0",
-    "typescript": "^1.8.10"
-  },
-  "dependencies": {
-    "cheerio": "^0.20.0"
+    "typescript": "^1.8.10",
+    "typings": "^0.8.1"
   }
 }

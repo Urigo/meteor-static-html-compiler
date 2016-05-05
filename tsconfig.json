@@ -4,13 +4,12 @@
     "module": "commonjs",
     "sourceMap": true,
     "declaration": true,
+    "noImplicitAny": false,
     "rootDir": ".",
-    "outDir": "build",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "noImplicitAny": false
+    "outDir": "build"
   },
   "exclude": [
+    ".npm",
     "build",
     "node_modules",
     "typings"
