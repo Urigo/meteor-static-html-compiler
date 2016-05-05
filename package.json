@@ -1,0 +1,30 @@
+{
+  "name": "meteor-templating",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jellyjs/meteor-templating.git"
+  },
+  "keywords": [
+    "meteor"
+  ],
+  "author": "Kamil Kisiela <kamil.kisiela@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jellyjs/meteor-templating/issues"
+  },
+  "homepage": "https://github.com/jellyjs/meteor-templating#readme",
+  "devDependencies": {
+    "tsc": "^1.20150623.0",
+    "tslint": "^3.9.0",
+    "typescript": "^1.8.10"
+  },
+  "dependencies": {
+    "cheerio": "^0.20.0"
+  }
+}
