@@ -1,10 +1,14 @@
-# static-html-compiler
+# meteor-static-html-compiler
+
+A tool that allows you to compile static HTML templates so you could import them from a module.
 
 ## Installation
 
 ```bash
 meteor add static-html-compiler
 ```
+
+If you are looking for a package with a working implementation of this tool you should check [`static-templates`](https://github.com/Urigo/meteor-static-templates).
 
 ## Usage
 
@@ -37,7 +41,7 @@ Compiles a html file to a string by default
 
 ##### constructor(MainHtmlCompiler?, TemplateHtmlCompiler?)
 
-It is possible to change the way StaticHtmlCompiler works by providing custom MainHtmlCompiler and TemplateHtmlCompiler.
+It is possible to change the way `StaticHtmlCompiler` works by providing custom `MainHtmlCompiler` and `TemplateHtmlCompiler`.
 
 
 ### MainHtmlCompiler
@@ -46,7 +50,7 @@ Handles files that contain `<head/>` or `<body/>` tag.
 
 ### TemplateHtmlCompiler
 
-Handles files that do not contain `<head/>` and `<body/>` tag.
+Handles files that do not contain `<head/>` and `<body/>` tags.
 
 ##### compileContents(file, contents: string): string
 
