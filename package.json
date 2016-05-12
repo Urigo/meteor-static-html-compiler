@@ -1,7 +1,6 @@
 {
   "name": "meteor-static-html-compiler",
   "version": "1.0.0",
-  "private": true,
   "description": "",
   "main": "build/src/index.js",
   "scripts": {
@@ -14,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/jellyjs/meteor-static-html-compiler.git"
+    "url": "git+ssh://git@github.com/urigo/meteor-static-html-compiler.git"
   },
   "keywords": [
     "meteor"
@@ -22,9 +21,9 @@
   "author": "Kamil Kisiela <kamil.kisiela@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jellyjs/meteor-static-html-compiler/issues"
+    "url": "https://github.com/urigo/meteor-static-html-compiler/issues"
   },
-  "homepage": "https://github.com/jellyjs/meteor-static-html-compiler#readme",
+  "homepage": "https://github.com/urigo/meteor-static-html-compiler#readme",
   "devDependencies": {
     "rimraf": "^2.5.2",
     "tsc": "^1.20150623.0",
