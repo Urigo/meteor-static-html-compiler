@@ -10,7 +10,7 @@ meteor add static-html-compiler
 
 If you are looking for a package with a working implementation of this tool you should check [`static-templates`](https://github.com/Urigo/meteor-static-templates).
 
-## Usage
+## Example
 
 ```js
 import {
