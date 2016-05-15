@@ -5,7 +5,7 @@ A tool that allows you to compile static HTML templates so you could import them
 ## Installation
 
 ```bash
-meteor add static-html-compiler
+meteor add urigo:static-html-compiler
 ```
 
 If you are looking for a package with a working implementation of this tool you should check [`static-templates`](https://github.com/Urigo/meteor-static-templates).
@@ -18,7 +18,7 @@ import {
   TemplateHtmlCompiler, // templates
   StaticHtmlCompiler,
   utils,
-} from 'meteor/static-html-compiler';
+} from 'meteor/urigo:static-html-compiler';
 
 class TemplateCacheCompiler extends TemplateHtmlCompiler {
   compileContents(file, contents) {

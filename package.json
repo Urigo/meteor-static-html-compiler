@@ -9,7 +9,8 @@
     "compile": "tsc",
     "lint": "tslint -e src/*.ts",
     "watch": "tsc -w",
-    "prepublish": "npm run compile"
+    "prepublish": "npm run compile",
+    "publish-meteor": "npm run prepublish && meteor publish"
   },
   "repository": {
     "type": "git",
