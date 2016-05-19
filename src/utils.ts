@@ -2,15 +2,12 @@ import * as htmlMinifier from 'html-minifier';
 
 export function minify(html: string): string {
   return htmlMinifier.minify(html, {
+    caseSensitive: true,
     collapseWhitespace: true,
     conservativeCollapse: true,
     minifyCSS: true,
     minifyJS: true,
     processScripts: ['text/template'],
-    removeAttributeQuotes: false,
-    caseSensitive: true,
-    customAttrSurround: [ [/#/, /(?:)/], [/\*/, /(?:)/], [/\[?\(?/, /(?:)/] ],
-    customAttrAssign: [ /\)?\]?=/ ],
   });
 };
 

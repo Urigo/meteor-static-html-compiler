@@ -6,8 +6,7 @@ Package.describe({
 
 Npm.depends({
   'cheerio': '0.20.0',
-  // XXX We should fix issue with 2+ version of html-minifier
-  'html-minifier': '0.8.0',
+  'html-minifier': '2.1.3',
   'lodash.assign': '4.0.8'
 });
 
@@ -16,7 +15,6 @@ Package.onUse(function(api) {
 
   var packages = [
     'caching-compiler@1.0.0',
-    'html-tools@1.0.5',
     'ecmascript@0.2.0'
   ];
 
