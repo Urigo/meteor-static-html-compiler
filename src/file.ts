@@ -5,6 +5,7 @@ export interface FileObject {
   getPathInPackage(): string;
   getPackagePrefix(): string;
   getTemplateUrl(): string;
+  getTemplateJS(): string;
 }
 
 const fileMixin = {
@@ -20,6 +21,12 @@ const fileMixin = {
    */
   getTemplateUrl: function(): string {
     return this.getPackagePrefix() + this.getPathInPackage();
+  },
+  /**
+   * @return {string} absolute temlateUrl extended by js extension
+   */
+  getTemplateJS: function(): string {
+    return `${this.getTemplateUrl()}.js`;
   },
 };
 

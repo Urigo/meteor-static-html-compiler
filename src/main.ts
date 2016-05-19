@@ -5,9 +5,14 @@ import {
 
 import * as $ from 'cheerio';
 
+export interface Section {
+  contents: string;
+  attrs?: Object;
+}
+
 export interface CompileResult {
-  head: string;
-  body: string;
+  head: Section;
+  body: Section;
 }
 
 export class MainHtmlCompiler extends BaseHtmlCompiler implements IBaseHtmlCompiler {
@@ -25,22 +30,41 @@ export class MainHtmlCompiler extends BaseHtmlCompiler implements IBaseHtmlCompi
     const $body = $contents.closest('body');
 
     return {
-      head: $head.html() || '',
-      body: $body.html() || '',
+      head: {
+        contents: $head.html() || '',
+      },
+      body: {
+        contents: $body.html() || '',
+        attrs: $body[0] ? $body[0].attribs : undefined,
+      },
     };
   }
 
   public addCompileResult(file, result: CompileResult) {
     try {
       file.addHtml({
-        data: result.head,
+        data: result.head.contents,
         section: 'head',
       });
 
       file.addHtml({
-        data: result.body,
+        data: result.body.contents,
         section: 'body',
       });
+
+      if (result.body.attrs) {
+        file.addJavaScript({
+          path: file.getTemplateJS(),
+          data: `
+            Meteor.startup(function() {
+              var attrs = ${JSON.stringify(result.body.attrs)};
+              for (var prop in attrs) {
+                document.body.setAttribute(prop, attrs[prop]);
+              }
+            });
+          `,
+        });
+      }
     } catch (e) {
       //
     }
