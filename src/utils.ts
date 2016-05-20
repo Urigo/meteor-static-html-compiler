@@ -10,6 +10,10 @@ export function minify(html: string): string {
     minifyCSS: true,
     minifyJS: true,
     processScripts: ['text/template'],
+    removeAttributeQuotes: false,
+    caseSensitive: true,
+    customAttrSurround: [ [/#/, /(?:)/], [/\*/, /(?:)/], [/\[?\(?/, /(?:)/] ],
+    customAttrAssign: [ /\)?\]?=/ ],
   });
 };
 
