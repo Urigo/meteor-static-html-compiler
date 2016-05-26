@@ -4,6 +4,10 @@ import {
 } from './base';
 
 import {
+  FileObject,
+} from './file';
+
+import {
   minify,
   clean,
 } from './utils';
@@ -21,7 +25,7 @@ export class TemplateHtmlCompiler extends BaseHtmlCompiler implements ITemplateH
     return result.length;
   }
 
-  public compileOneFile(file): string {
+  public compileOneFile(file: FileObject): string {
     let compiled = undefined;
 
     try {
@@ -39,11 +43,11 @@ export class TemplateHtmlCompiler extends BaseHtmlCompiler implements ITemplateH
    * @param  {string} contents minified html
    * @return {string}          javascript code
    */
-  public compileContents(file, contents) {
+  public compileContents(file: FileObject, contents) {
     return `module.exports = "${clean(contents)}";`;
   }
 
-  public addCompileResult(file, result: string) {
+  public addCompileResult(file: FileObject, result: string) {
     const data = this.compileContents(file, result);
     const path = file.getPathInPackage();
 

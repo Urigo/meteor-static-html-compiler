@@ -3,6 +3,10 @@ import {
   IBaseHtmlCompiler,
 } from './base';
 
+import {
+  FileObject,
+} from './file';
+
 import * as $ from 'cheerio';
 
 export interface Section {
@@ -24,7 +28,7 @@ export class MainHtmlCompiler extends BaseHtmlCompiler implements IBaseHtmlCompi
     return result.head.length + result.body.length;
   }
 
-  public compileOneFile(file): CompileResult {
+  public compileOneFile(file: FileObject): CompileResult {
     const $contents = $(file.getContentsAsString());
     const $head = $contents.closest('head');
     const $body = $contents.closest('body');
@@ -40,7 +44,7 @@ export class MainHtmlCompiler extends BaseHtmlCompiler implements IBaseHtmlCompi
     };
   }
 
-  public addCompileResult(file, result: CompileResult) {
+  public addCompileResult(file: FileObject, result: CompileResult) {
     try {
       file.addHtml({
         data: result.head.contents,

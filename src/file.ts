@@ -8,7 +8,10 @@ export interface FileObject {
   getPackagePrefix(): string;
   getTemplateUrl(): string;
   getTemplateJS(): string;
+  getSourceHash(): string;
   isNodeModule(): boolean;
+  addHtml(options: any);
+  addJavaScript(options: any);
 }
 
 const fileMixin = {

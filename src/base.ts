@@ -1,3 +1,7 @@
+import {
+  FileObject,
+} from './file';
+
 export interface IBaseHtmlCompiler {
   processFilesForTarget(files: any);
   compileResultSize(result): number;
@@ -13,11 +17,11 @@ export class BaseHtmlCompiler extends CachingCompiler {
     });
   }
 
-  public getCacheKey(file): string {
+  public getCacheKey(file: FileObject): string {
     return file.getSourceHash();
   }
 
-  public processFilesForTarget(files) {
+  public processFilesForTarget(files: FileObject[]) {
     super.processFilesForTarget(files);
   }
 };
