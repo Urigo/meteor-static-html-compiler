@@ -22,7 +22,17 @@ export class TemplateHtmlCompiler extends BaseHtmlCompiler implements ITemplateH
   }
 
   public compileOneFile(file): string {
-    return minify(file.getContentsAsString());
+    let compiled = undefined;
+
+    try {
+      compiled = minify(file.getContentsAsString());
+    } catch (e) {
+      // throw an error only if file does not come from node module
+      if (!file.isNodeModule()) {
+        throw e;
+      }
+    }
+    return compiled;
   }
 
   /**
@@ -34,9 +44,12 @@ export class TemplateHtmlCompiler extends BaseHtmlCompiler implements ITemplateH
   }
 
   public addCompileResult(file, result: string) {
+    const data = this.compileContents(file, result);
+    const path = file.getPathInPackage();
+
     file.addJavaScript({
-      data: this.compileContents(file, result),
-      path: file.getPathInPackage(),
+      data,
+      path,
     });
   }
 };

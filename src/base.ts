@@ -1,8 +1,3 @@
-import {
-  extend,
-  FileObject,
-} from './file';
-
 export interface IBaseHtmlCompiler {
   processFilesForTarget(files: any);
   compileResultSize(result): number;
@@ -22,8 +17,7 @@ export class BaseHtmlCompiler extends CachingCompiler {
     return file.getSourceHash();
   }
 
-  public processFilesForTarget(files: FileObject[]) {
-    files.forEach((file) => extend(file));
+  public processFilesForTarget(files) {
     super.processFilesForTarget(files);
   }
 };
