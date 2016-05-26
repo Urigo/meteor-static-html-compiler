@@ -13,6 +13,11 @@ import {
   ITemplateHtmlCompiler,
 } from './template';
 
+import {
+  extend,
+  FileObject,
+} from './file';
+
 import * as utils from './utils';
 
 import * as $ from 'cheerio';
@@ -36,30 +41,34 @@ export class StaticHtmlCompiler {
     this.templateHtmlCompiler = templateHtmlCompiler || new TemplateHtmlCompiler;
   }
 
-  public processFilesForTarget(files) {
+  public processFilesForTarget(files: FileObject[]) {
     const mainFiles: any[] = [];
     const templateFiles: any[] = [];
 
     files.forEach((file) => {
-      // skips files from node_modules
-      if (!!file.getPathInPackage().startsWith('node_modules')) {
-        return;
-      }
+      // add few helper methods
+      extend(file);
 
       const $contents = $(file.getContentsAsString());
       const isMain = $contents.closest('head,body').length;
       const isTemplate = $contents.closest(':not(head,body)').length;
 
-      if (isMain && isTemplate) {
-        const fileName = file.getBasename();
-        const errorMsg = `${fileName} has wrong layout`;
-        throw Error(errorMsg);
-      }
-
-      if (isMain > 0) {
-        mainFiles.push(file);
-      } else {
+      if (file.isNodeModule()) {
+        // push directly as a template
         templateFiles.push(file);
+      } else {
+        // cannot be both
+        if (isMain && isTemplate) {
+          const fileName = file.getBasename();
+          const errorMsg = `${fileName} has wrong layout`;
+          throw Error(errorMsg);
+        }
+
+        if (isMain > 0) {
+          mainFiles.push(file);
+        } else {
+          templateFiles.push(file);
+        }
       }
     });
 

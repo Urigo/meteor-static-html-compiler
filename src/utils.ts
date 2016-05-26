@@ -1,9 +1,6 @@
 import * as htmlMinifier from 'html-minifier';
 
 export function minify(html: string): string {
-  // Just parse the html to make sure it is correct before minifying
-  HTMLTools.parseFragment(html);
-
   return htmlMinifier.minify(html, {
     collapseWhitespace: true,
     conservativeCollapse: true,

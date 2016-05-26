@@ -1,11 +1,17 @@
 import assign = require('lodash.assign');
 
 export interface FileObject {
+  getContentsAsString(): string;
+  getBasename(): string;
   getPackageName(): string;
   getPathInPackage(): string;
   getPackagePrefix(): string;
   getTemplateUrl(): string;
   getTemplateJS(): string;
+  getSourceHash(): string;
+  isNodeModule(): boolean;
+  addHtml(options: any);
+  addJavaScript(options: any);
 }
 
 const fileMixin = {
@@ -27,6 +33,12 @@ const fileMixin = {
    */
   getTemplateJS: function(): string {
     return `${this.getTemplateUrl()}.js`;
+  },
+  /**
+   * @return {boolean} checks if file comes from node module
+   */
+  isNodeModule: function(): boolean {
+    return !!this.getPathInPackage().startsWith('node_modules');
   },
 };
 

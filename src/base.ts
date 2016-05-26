@@ -1,5 +1,4 @@
 import {
-  extend,
   FileObject,
 } from './file';
 
@@ -18,12 +17,11 @@ export class BaseHtmlCompiler extends CachingCompiler {
     });
   }
 
-  public getCacheKey(file): string {
+  public getCacheKey(file: FileObject): string {
     return file.getSourceHash();
   }
 
   public processFilesForTarget(files: FileObject[]) {
-    files.forEach((file) => extend(file));
     super.processFilesForTarget(files);
   }
 };

@@ -4,6 +4,10 @@ import {
 } from './base';
 
 import {
+  FileObject,
+} from './file';
+
+import {
   minify,
   clean,
 } from './utils';
@@ -21,22 +25,35 @@ export class TemplateHtmlCompiler extends BaseHtmlCompiler implements ITemplateH
     return result.length;
   }
 
-  public compileOneFile(file): string {
-    return minify(file.getContentsAsString());
+  public compileOneFile(file: FileObject): string {
+    let compiled = undefined;
+
+    try {
+      compiled = minify(file.getContentsAsString());
+    } catch (e) {
+      // throw an error only if file does not come from node module
+      if (!file.isNodeModule()) {
+        throw e;
+      }
+    }
+    return compiled;
   }
 
   /**
    * @param  {string} contents minified html
    * @return {string}          javascript code
    */
-  public compileContents(file, contents) {
+  public compileContents(file: FileObject, contents) {
     return `module.exports = "${clean(contents)}";`;
   }
 
-  public addCompileResult(file, result: string) {
+  public addCompileResult(file: FileObject, result: string) {
+    const data = this.compileContents(file, result);
+    const path = file.getPathInPackage();
+
     file.addJavaScript({
-      data: this.compileContents(file, result),
-      path: file.getPathInPackage(),
+      data,
+      path,
     });
   }
 };
