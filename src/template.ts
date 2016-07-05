@@ -44,7 +44,7 @@ export class TemplateHtmlCompiler extends BaseHtmlCompiler implements ITemplateH
    * @return {string}          javascript code
    */
   public compileContents(file: FileObject, contents) {
-    return `module.exports = "${clean(contents)}";`;
+    return `exports.default = "${clean(contents)}";`;
   }
 
   public addCompileResult(file: FileObject, result: string) {
