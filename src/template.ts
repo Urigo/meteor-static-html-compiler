@@ -44,16 +44,32 @@ export class TemplateHtmlCompiler extends BaseHtmlCompiler implements ITemplateH
    * @return {string}          javascript code
    */
   public compileContents(file: FileObject, contents) {
-    return `exports.default = "${clean(contents)}";`;
+    return `module.exports.default = "${clean(contents)}";`;
   }
 
   public addCompileResult(file: FileObject, result: string) {
     const data = this.compileContents(file, result);
     const path = file.getPathInPackage();
 
+    // JS-modules for imports like:
+    //   import content from '/path.html';
+
+    // !raw - added for the compatibility
+    // with angular2-html-templates
     file.addJavaScript({
       data,
+      path: path + '!raw',
+      lazy: true
+    });
+
+    // Turned out one file's modules
+    // depends on each other.
+    // Anyways by setting data to empty,
+    // additional load is exluded.
+    file.addJavaScript({
+      data: '',
       path,
+      lazy: true
     });
   }
 };
