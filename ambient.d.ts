@@ -4,6 +4,8 @@ declare class CachingCompiler {
   public processFilesForTarget(file: any): any;
 }
 
+declare const Babel: any;
+
 declare module 'lodash.assign' {
   import main = require('lodash');
   export = main.assign;
