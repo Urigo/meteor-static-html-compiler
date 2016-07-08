@@ -16,6 +16,10 @@ export interface ITemplateHtmlCompiler extends IBaseHtmlCompiler {
   compileContents(file: any, contents: string): string;
 }
 
+const babelOptions = Babel.getDefaultOptions();
+babelOptions.sourceMap = false;
+babelOptions.ast = false;
+
 export class TemplateHtmlCompiler extends BaseHtmlCompiler implements ITemplateHtmlCompiler {
   constructor() {
     super('template-static-html-compiler');
@@ -44,7 +48,9 @@ export class TemplateHtmlCompiler extends BaseHtmlCompiler implements ITemplateH
    * @return {string}          javascript code
    */
   public compileContents(file: FileObject, contents) {
-    return `module.exports.default = "${clean(contents)}";`;
+    return Babel
+      .compile(`export default "${clean(contents)}";`, babelOptions)
+      .code;
   }
 
   public addCompileResult(file: FileObject, result: string) {
@@ -59,7 +65,7 @@ export class TemplateHtmlCompiler extends BaseHtmlCompiler implements ITemplateH
     file.addJavaScript({
       data,
       path: path + '!raw',
-      lazy: true
+      lazy: true,
     });
 
     // Turned out one file's modules
@@ -69,7 +75,7 @@ export class TemplateHtmlCompiler extends BaseHtmlCompiler implements ITemplateH
     file.addJavaScript({
       data: '',
       path,
-      lazy: true
+      lazy: true,
     });
   }
 };

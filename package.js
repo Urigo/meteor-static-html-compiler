@@ -15,7 +15,8 @@ Package.onUse(function(api) {
 
   var packages = [
     'caching-compiler@1.0.0',
-    'ecmascript@0.2.0'
+    'ecmascript@0.2.0',
+    'babel-compiler@6.8.0'
   ];
 
   api.use(packages, 'server');
