@@ -1,6 +1,6 @@
 # Change log
 
-### vNEXT
+### v0.1.4
 
 - Update `html-minifier` to `2.1.7` to fully support html5 and angular2 attributes [PR #4](https://github.com/Urigo/meteor-static-html-compiler/pull/4)
 - Export template as default [PR #9](https://github.com/Urigo/meteor-static-html-compiler/pull/9)
