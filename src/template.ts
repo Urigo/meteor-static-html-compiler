@@ -73,7 +73,7 @@ export class TemplateHtmlCompiler extends BaseHtmlCompiler implements ITemplateH
     // Anyways by setting data to empty,
     // additional load is exluded.
     file.addJavaScript({
-      data: '',
+      data,
       path,
       lazy: true,
     });
