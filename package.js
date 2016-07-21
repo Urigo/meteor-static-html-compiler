@@ -1,6 +1,6 @@
 Package.describe({
   name: 'urigo:static-html-compiler',
-  version: '0.1.4',
+  version: '0.1.6',
   summary: 'Compiles static HTML templates so you could import them from a module'
 });
 
@@ -19,10 +19,11 @@ Package.onUse(function(api) {
     'babel-compiler@6.8.0'
   ];
 
+  api.use("barbatus:typescript@0.3.3", ["client", "server"]);
   api.use(packages, 'server');
   api.imply(packages, 'server');
 
-  api.mainModule('build/src/index.js', 'server');
+  api.mainModule('src/index.ts', 'server');
 
   api.export([
     'StaticHtmlCompiler'
