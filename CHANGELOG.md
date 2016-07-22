@@ -2,6 +2,10 @@
 
 ### vNEXT
 
+### v0.1.7
+
+- Fixed an issue with `babel/pollyfils` [PR #13](https://github.com/Urigo/meteor-static-html-compiler/pull/13), [Issue #12](https://github.com/Urigo/meteor-static-html-compiler/issues/12)
+
 ### v0.1.6 - v0.1.5
 
 - Fix an issue with missing templates [PR #10](https://github.com/Urigo/meteor-static-html-compiler/pull/10)
