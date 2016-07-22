@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+### v0.1.6 - v0.1.5
+
 - Fix an issue with missing templates [PR #10](https://github.com/Urigo/meteor-static-html-compiler/pull/10)
 
 ### v0.1.4
