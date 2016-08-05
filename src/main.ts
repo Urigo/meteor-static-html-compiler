@@ -45,32 +45,28 @@ export class MainHtmlCompiler extends BaseHtmlCompiler implements IBaseHtmlCompi
   }
 
   public addCompileResult(file: FileObject, result: CompileResult) {
-    try {
-      file.addHtml({
-        data: result.head.contents,
-        section: 'head',
-      });
+    file.addHtml({
+      data: result.head.contents,
+      section: 'head',
+    });
 
-      file.addHtml({
-        data: result.body.contents,
-        section: 'body',
-      });
+    file.addHtml({
+      data: result.body.contents,
+      section: 'body',
+    });
 
-      if (result.body.attrs) {
-        file.addJavaScript({
-          path: file.getTemplateJS(),
-          data: `
-            Meteor.startup(function() {
-              var attrs = ${JSON.stringify(result.body.attrs)};
-              for (var prop in attrs) {
-                document.body.setAttribute(prop, attrs[prop]);
-              }
-            });
-          `,
-        });
-      }
-    } catch (e) {
-      //
+    if (result.body.attrs) {
+      file.addJavaScript({
+        path: file.getTemplateJS(),
+        data: `
+          Meteor.startup(function() {
+            var attrs = ${JSON.stringify(result.body.attrs)};
+            for (var prop in attrs) {
+              document.body.setAttribute(prop, attrs[prop]);
+            }
+          });
+        `,
+      });
     }
   }
 };
