@@ -1,6 +1,6 @@
 # Change log
 
-### vNEXT
+### v0.1.8
 
 - Templates are no longer minified in development [PR #15](https://github.com/Urigo/meteor-static-html-compiler/pull/15)
 
