@@ -30,17 +30,19 @@ export class TemplateHtmlCompiler extends BaseHtmlCompiler implements ITemplateH
   }
 
   public compileOneFile(file: FileObject): string {
-    let compiled = undefined;
+    if (Meteor.isDevelopment) {
+      return file.getContentsAsString();
+    }
 
     try {
-      compiled = minify(file.getContentsAsString());
+      // Minify for the prod.
+      return minify(file.getContentsAsString());
     } catch (e) {
       // throw an error only if file does not come from node module
       if (!file.isNodeModule()) {
         throw e;
       }
     }
-    return compiled;
   }
 
   /**
@@ -69,8 +71,7 @@ export class TemplateHtmlCompiler extends BaseHtmlCompiler implements ITemplateH
     });
 
     // Turned out one file's modules
-    // depends on each other.
-    // Anyways by setting data to empty,
+    // depends on each other, so
     // additional load is exluded.
     file.addJavaScript({
       data,
