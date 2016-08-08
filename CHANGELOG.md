@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+- Templates are no longer minified in development [PR #15](https://github.com/Urigo/meteor-static-html-compiler/pull/15)
+
 ### v0.1.7
 
 - Fixed an issue with `babel/pollyfils` [PR #13](https://github.com/Urigo/meteor-static-html-compiler/pull/13), [Issue #12](https://github.com/Urigo/meteor-static-html-compiler/issues/12)
