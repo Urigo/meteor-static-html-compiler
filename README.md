@@ -1,5 +1,7 @@
 # meteor-static-html-compiler
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Urigo/meteor-static-html-compiler.svg)](https://greenkeeper.io/)
+
 A tool that allows you to compile static HTML templates so you could import them from a module.
 
 ## Installation
