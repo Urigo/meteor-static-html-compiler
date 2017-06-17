@@ -28,8 +28,8 @@
   "devDependencies": {
     "rimraf": "^2.5.2",
     "tsc": "^1.20150623.0",
-    "tslint": "^3.9.0",
-    "typescript": "^1.8.10",
-    "typings": "^1.0.4"
+    "tslint": "^5.4.3",
+    "typescript": "^2.3.4",
+    "typings": "^2.1.1"
   }
 }
