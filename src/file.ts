@@ -1,4 +1,3 @@
-import assign = require('lodash.assign');
 
 export interface FileObject {
   getContentsAsString(): string;
@@ -43,5 +42,5 @@ const fileMixin = {
 };
 
 export function extend(file: FileObject) {
-  assign(file, fileMixin);
+  Object.assign(file, fileMixin);
 }
