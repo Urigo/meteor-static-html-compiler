@@ -1,5 +1,12 @@
 # Change log
 
+### v.NEXT
+
+### v1.0.0
+
+- Remove comments by default [PR #19](https://github.com/Urigo/meteor-static-html-compiler/pull/19)
+- Updated dependencies to be compatible with meteor 1.6.1 [PR #22](https://github.com/Urigo/meteor-static-html-compiler/pull/22)
+
 ### v0.1.8
 
 - Templates are no longer minified in development [PR #15](https://github.com/Urigo/meteor-static-html-compiler/pull/15)
