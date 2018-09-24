@@ -8,7 +8,7 @@ export function minify(html: string): string {
     minifyCSS: true,
     minifyJS: true,
     processScripts: ['text/template'],
-    removeComments: true
+    removeComments: true,
   });
 };
 
