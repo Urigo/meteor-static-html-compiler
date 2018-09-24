@@ -62,17 +62,6 @@ export class TemplateHtmlCompiler extends BaseHtmlCompiler implements ITemplateH
     // JS-modules for imports like:
     //   import content from '/path.html';
 
-    // !raw - added for the compatibility
-    // with angular2-html-templates
-    file.addJavaScript({
-      data,
-      path: path + '!raw',
-      lazy: true,
-    });
-
-    // Turned out one file's modules
-    // depends on each other, so
-    // additional load is exluded.
     file.addJavaScript({
       data,
       path,
