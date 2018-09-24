@@ -10,8 +10,6 @@ Npm.depends({
 });
 
 Package.onUse(function(api) {
-  api.versionsFrom('METEOR@1.7.0.5');
-
   const packages = [
     'caching-compiler@1.2.0',
     'ecmascript@0.11.1',

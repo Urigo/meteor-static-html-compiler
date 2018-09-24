@@ -2,6 +2,7 @@
 declare class CachingCompiler {
   constructor(options: Object);
   public processFilesForTarget(file: any): any;
+  public setDiskCacheDirectory(cacheDir: string);
 }
 
 declare const Babel: any;
