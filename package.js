@@ -11,9 +11,9 @@ Npm.depends({
 
 Package.onUse(function(api) {
   const packages = [
-    'caching-compiler@1.2.0',
+    'caching-compiler@1.1.12',
     'ecmascript@0.11.1',
-    'babel-compiler@7.2.0',
+    'babel-compiler@7.1.1',
   ];
 
   api.use(packages, 'server');
