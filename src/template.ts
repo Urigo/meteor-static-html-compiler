@@ -17,7 +17,7 @@ export interface ITemplateHtmlCompiler extends IBaseHtmlCompiler {
 }
 
 const babelOptions = Babel.getDefaultOptions();
-babelOptions.sourceMap = false;
+babelOptions.sourceMaps = false;
 babelOptions.ast = false;
 
 export class TemplateHtmlCompiler extends BaseHtmlCompiler implements ITemplateHtmlCompiler {
