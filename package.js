@@ -1,6 +1,6 @@
 Package.describe({
   name: 'urigo:static-html-compiler',
-  version: '1.1.0',
+  version: '1.1.1',
   summary: 'Compiles static HTML templates so you could import them from a module'
 });
 

@@ -41,6 +41,11 @@ export class StaticHtmlCompiler {
     this.templateHtmlCompiler = templateHtmlCompiler || new TemplateHtmlCompiler;
   }
 
+  public setDiskCacheDirectory(directory: string) {
+    this.mainHtmlCompiler.setDiskCacheDirectory(directory);
+    this.templateHtmlCompiler.setDiskCacheDirectory(directory);
+  }
+
   public processFilesForTarget(files: FileObject[]) {
     const mainFiles: any[] = [];
     const templateFiles: any[] = [];

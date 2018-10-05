@@ -2,12 +2,15 @@ import {
   FileObject,
 } from './file';
 
-export interface IBaseHtmlCompiler {
+interface ICachingCompiler{
+  setDiskCacheDirectory(cacheDir: string);
   processFilesForTarget(files: any);
   compileResultSize(result): number;
   compileOneFile(file): any;
   addCompileResult(file, result);
 }
+
+export interface IBaseHtmlCompiler extends ICachingCompiler{}
 
 export class BaseHtmlCompiler extends CachingCompiler {
   constructor(compilerName) {
