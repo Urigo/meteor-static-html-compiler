@@ -1,6 +1,6 @@
 Package.describe({
   name: 'urigo:static-html-compiler',
-  version: '1.1.1',
+  version: '1.1.3',
   summary: 'Compiles static HTML templates so you could import them from a module'
 });
 
@@ -11,10 +11,12 @@ Npm.depends({
 
 Package.onUse(function(api) {
   const packages = [
-    'caching-compiler@1.1.12',
-    'ecmascript@0.11.1',
-    'babel-compiler@7.1.1',
+    'caching-compiler@1.2.0',
+    'ecmascript@0.12.0',
+    'babel-compiler@7.2.0',
   ];
+
+  api.versionsFrom('1.8');
 
   api.use(packages, 'server');
   api.imply(packages, 'server');
