@@ -29,27 +29,43 @@ export class TemplateHtmlCompiler extends BaseHtmlCompiler implements ITemplateH
     return result.length;
   }
 
-  public compileOneFile(file: FileObject): string {
-    if (Meteor.isDevelopment) {
-      return file.getContentsAsString();
-    }
+  public compileOneFileLater(file: FileObject, getResult) {
+    const path = file.getPathInPackage();
+    file.addJavaScript({
+      path,
+    }, async () => {
+      const data = await getResult();
+      return {
+        data,
+      };
+    });
+  }
 
-    try {
-      // Minify for the prod.
-      return minify(file.getContentsAsString());
-    } catch (e) {
-      // throw an error only if file does not come from node module
-      if (!file.isNodeModule()) {
-        throw e;
+  public compileOneFile(file: FileObject): string {
+    let contents: string;
+
+    if (Meteor.isDevelopment) {
+      contents = file.getContentsAsString();
+    } else {
+      try {
+        // Minify for the prod.
+        contents = minify(file.getContentsAsString());
+      } catch (e) {
+        // throw an error only if file does not come from node module
+        if (!file.isNodeModule()) {
+          throw e;
+        }
       }
     }
+
+    return this.compileContents(file, contents);
   }
 
   /**
    * @param  {string} contents minified html
    * @return {string}          javascript code
    */
-  public compileContents(file: FileObject, contents) {
+  public compileContents(file: FileObject, contents): string {
     return Babel
       .compile(`export default "${clean(contents)}";`, babelOptions, {
         cacheDirectory: this._diskCache,
@@ -60,8 +76,7 @@ export class TemplateHtmlCompiler extends BaseHtmlCompiler implements ITemplateH
       .code;
   }
 
-  public addCompileResult(file: FileObject, result: string) {
-    const data = this.compileContents(file, result);
+  public addCompileResult(file: FileObject, data: string) {
     const path = file.getPathInPackage();
 
     // JS-modules for imports like:
@@ -69,7 +84,7 @@ export class TemplateHtmlCompiler extends BaseHtmlCompiler implements ITemplateH
 
     file.addJavaScript({
       data,
-      path,
+      path: file.getPathInPackage(),
       lazy: true,
     });
   }

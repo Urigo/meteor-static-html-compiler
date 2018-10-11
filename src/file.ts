@@ -8,9 +8,10 @@ export interface FileObject {
   getTemplateUrl(): string;
   getTemplateJS(): string;
   getSourceHash(): string;
+  getArch(): string;
   isNodeModule(): boolean;
   addHtml(options: any);
-  addJavaScript(options: any);
+  addJavaScript(options: any, resultPromise?: any);
 }
 
 const fileMixin = {

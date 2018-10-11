@@ -3,10 +3,12 @@ import {
 } from './file';
 
 interface ICachingCompiler{
+  _diskCache?: string,
   setDiskCacheDirectory(cacheDir: string);
   processFilesForTarget(files: any);
   compileResultSize(result): number;
   compileOneFile(file): any;
+  compileOneFileLater?(file, getResult: () => Promise<any>);
   addCompileResult(file, result);
 }
 

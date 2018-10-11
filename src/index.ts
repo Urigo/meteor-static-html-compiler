@@ -78,7 +78,9 @@ export class StaticHtmlCompiler {
     });
 
     // Use each compiler with it's files and compile them
-    this.mainHtmlCompiler.processFilesForTarget(mainFiles);
-    this.templateHtmlCompiler.processFilesForTarget(templateFiles);
+    return Promise.all([
+      this.mainHtmlCompiler.processFilesForTarget(mainFiles),
+      this.templateHtmlCompiler.processFilesForTarget(templateFiles),
+    ]);
   }
 }
